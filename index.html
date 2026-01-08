@@ -68,24 +68,24 @@
       <div class="category-details ctl">
         <p>СУМКИ НА КОЛЕСАХ</p>
         <a class="btn-sm wb-url">WB</a>
-        <a class="btn-sm ozon-url">Ozon</a>
-        <a class="btn-sm yandex-url">Яндекс Маркет</a>
+        <!-- <a class="btn-sm ozon-url">Ozon</a> -->
+        <!-- <a class="btn-sm yandex-url">Яндекс Маркет</a> -->
       </div>
     </div>
     <div class="image-wrapper right shadow-right" style="background-image: url(./static/image/other-products.webp);">
       <div class="category-details ctr">
         <p>ДРУГИЕ ТОВАРЫ</p>
         <a class="btn-sm wb-url">WB</a>
-        <a class="btn-sm ozon-url">Ozon</a>
-        <a class="btn-sm yandex-url">Яндекс Маркет</a>
+        <!-- <a class="btn-sm ozon-url">Ozon</a> -->
+        <!-- <a class="btn-sm yandex-url">Яндекс Маркет</a> -->
       </div>
     </div>
     <div class="image-wrapper left shadow-left" style="background-image: url(./static/image/spare-parts.webp);">
       <div class="category-details ctl">
         <p>ЗАПЧАСТИ ДЛЯ СУМОК И ЧЕМОДАНОВ</p>
         <a class="btn-sm wb-url">WB</a>
-        <a class="btn-sm ozon-url">Ozon</a>
-        <a class="btn-sm yandex-url">Яндекс Маркет</a>
+        <!-- <a class="btn-sm ozon-url">Ozon</a> -->
+        <!-- <a class="btn-sm yandex-url">Яндекс Маркет</a> -->
       </div>
     </div>
   </div>
@@ -107,8 +107,19 @@
       <h2 class="">Связаться с Производителем</h2>
       <p>Приобретайте сумки без посредников - экономия до 35% по сравнению с маркетплейсами. Мы также открыты для оптового сотрудничества с магазинами и партнёрами.</p>
       <div class="opt-btns">
-        <button class="btn">Купить напрямую</button>
-        <button class="btn">Связаться для опта</button>
+        <button class="btn" data-card="direct-buy">Купить напрямую</button>
+        <button class="btn" data-card="wholesale">Связаться для опта</button>
+      </div>
+    </div>
+    <div class="popup">
+      <div class="pop-card direct-buy">
+        Самовывоз из Росстова-на-Дону
+        Если находитесь в росстове то можете написать нам и забрать сумку с производства
+      </div>
+
+      <div class="pop-card wholesale">
+        Свяжитесь с нами и укажите интересующие товары и количество
+        Контакты
       </div>
     </div>
   </div>
@@ -116,7 +127,9 @@
     <div class="footer-content">
       <h3 class="main-title">КОНТАКТЫ</h3>
       <p><a href="tel:+79282709634">+ 7 (928) 270 96 34</a></p>
-      <p><a>What's app</a></p>
+      <p>sales@heavenlybags.ru</p>
+      
+      <p><a href="https://wa.me/79282709634">What's app</a></p>
       <p>Россия, Ростов-на-Дону</p>
     </div>
     <div id="copyright"></div>
@@ -125,6 +138,61 @@
     const year = new Date().getFullYear();
     document.getElementById("copyright").textContent =
       `© ${year} Все права защищены.`;
+
+
+    
+    const popupState = {active: null}
+
+    function openPopup() {
+
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+
+      const card = document.querySelector(`.pop-card.${popupState.active}`)
+      card.classList.add('active')
+      card.parentElement.classList.add('active')
+      setTimeout(() => {
+        card.parentElement.classList.add('show')
+      }, 1)
+    }
+
+    function closePopup() {
+      const card = document.querySelector(`.pop-card.${popupState.active}`)
+      popupState.active = null
+      card.parentElement.classList.remove('show')
+
+      setTimeout(() => {
+        document.body.classList.remove('no-scroll')
+        card.parentElement.classList.remove('active')
+        card.classList.remove('active')
+      }, 350)
+
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+
+    document.querySelectorAll('.opt-btns .btn').forEach(btn => {
+      btn.addEventListener('click', (event) => {
+        if (popupState.active === null) {
+          popupState.active = btn.dataset.card
+          openPopup()
+        } else {
+          console.error('Something went wrong!')
+        }
+      })
+    })
+  
+    document.querySelector('.popup').addEventListener('scroll', (event) => {
+      event.preventDefault()
+    })
+  
+    document.querySelector('.popup').addEventListener('click', (event) => {
+      closePopup()
+    })
+
   </script>
 </body>
 </html>

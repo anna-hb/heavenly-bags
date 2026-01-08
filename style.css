@@ -237,12 +237,12 @@ h1, h2, h3, h4, h5, h6, b {
 }
 
 .ctr {
-  top: 8px;
+  top: 20px;
   left: 2px;
 }
 
 .ctl {
-  top: 8px;
+  top: 20px;
   right: 2px;
   text-align: end;
 }
@@ -350,6 +350,48 @@ h1, h2, h3, h4, h5, h6, b {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.popup {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #00000046;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+
+.popup.active {
+  display: flex;
+}
+
+.popup.show {
+  opacity: 1;
+}
+
+.popup .pop-card {
+  display: none;
+  width: 400px;
+  min-height: 300px;
+  background-color: white;
+  box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+}
+
+.pop-card.active {
+  display: block;
+}
+
+body.no-scroll {
+  position: fixed;
+  /* height: 100vh; */
+  /* overflow-y: hidden; */
+  /* padding-right: 15px; */
 }
 
 /* Footer */
