@@ -107,19 +107,53 @@
       <h2 class="">Связаться с Производителем</h2>
       <p>Приобретайте сумки без посредников - экономия до 35% по сравнению с маркетплейсами. Мы также открыты для оптового сотрудничества с магазинами и партнёрами.</p>
       <div class="opt-btns">
-        <button class="btn" data-card="direct-buy">Купить напрямую</button>
-        <button class="btn" data-card="wholesale">Связаться для опта</button>
+        <button class="btn" data-card="direct-buy">Купить Напрямую</button>
+        <button class="btn" data-card="wholesale">Связаться для Опта</button>
       </div>
     </div>
     <div class="popup">
       <div class="pop-card direct-buy">
-        Самовывоз из Росстова-на-Дону
-        Если находитесь в росстове то можете написать нам и забрать сумку с производства
+        <h3>Купить напрямую</h3>
+        <p>
+          Самовывоз из Ростова-на-Дону.
+        </p>
+
+        <p>
+          Для клиентов, находящихся в Ростове-на-Дону, доступен самовывоз сумок напрямую с производства. Свяжитесь с нами для согласования деталей.
+        </p>
+
+        <div class="divider"></div>
+
+        <h3>КОНТАКТЫ</h3>
+        <p><a href="tel:+79282709634">+ 7 (928) 270 96 34</a></p>
+        
+        <p><a href="mailto:sales@heavenlybags.ru?subject=Заказ товара напрямую">sales@heavenlybags.ru</a></p>
+        
+        <p><a href="https://wa.me/79282709634">WhatsApp</a></p>
+
+        <p><a href="https://t.me/79282709634">Telegram</a></p>
+
       </div>
 
       <div class="pop-card wholesale">
-        Свяжитесь с нами и укажите интересующие товары и количество
-        Контакты
+
+        <h3>Индивидуальные оптовые условия</h3>
+        <p>
+          Свяжитесь с нами для подбора ассортимента и согласования объёмов.
+        </p>
+
+        <div class="divider"></div>
+        
+        <h3>КОНТАКТЫ</h3>
+        <p><a href="tel:+79282709634">+ 7 (928) 270 96 34</a></p>
+        
+        <p><a href="mailto:sales@heavenlybags.ru?subject=По вопросу сотрудничества">sales@heavenlybags.ru</a></p>
+        
+        <p><a href="https://wa.me/79282709634">WhatsApp</a></p>
+
+        <p><a href="https://t.me/79282709634">Telegram</a></p>
+
+        
       </div>
     </div>
   </div>
@@ -127,10 +161,15 @@
     <div class="footer-content">
       <h3 class="main-title">КОНТАКТЫ</h3>
       <p><a href="tel:+79282709634">+ 7 (928) 270 96 34</a></p>
-      <p>sales@heavenlybags.ru</p>
       
-      <p><a href="https://wa.me/79282709634">What's app</a></p>
+      <p><a href="mailto:sales@heavenlybags.ru?subject=По вопросу сотрудничества">sales@heavenlybags.ru</a></p>
+      
+      <p><a href="https://wa.me/79282709634">WhatsApp</a></p>
+
+      <p><a href="https://t.me/79282709634">Telegram</a></p>
+
       <p>Россия, Ростов-на-Дону</p>
+
     </div>
     <div id="copyright"></div>
   </footer>
@@ -138,7 +177,6 @@
     const year = new Date().getFullYear();
     document.getElementById("copyright").textContent =
       `© ${year} Все права защищены.`;
-
 
     
     const popupState = {active: null}
@@ -185,12 +223,14 @@
       })
     })
   
-    document.querySelector('.popup').addEventListener('scroll', (event) => {
-      event.preventDefault()
-    })
-  
     document.querySelector('.popup').addEventListener('click', (event) => {
       closePopup()
+    })
+
+    document.querySelectorAll('.pop-card').forEach(card => {
+      card.addEventListener('click', event => {
+        event.stopPropagation()
+      }, { passive: false })
     })
 
   </script>
